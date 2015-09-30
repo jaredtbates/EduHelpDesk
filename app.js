@@ -9,7 +9,9 @@ var db = require('./lib/db');
 
 var routes = {
     index: require('./routes/index'),
-    submit: require('./routes/api/request')
+    api: {
+        request: require('./routes/api/request')
+    }
 };
 
 var app = express();
@@ -27,7 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes.index);
-app.use('/submit', routes.submit);
+app.use('/api/request', routes.api.request);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
