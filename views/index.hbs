@@ -2,18 +2,18 @@
 <div class="container">
     <div class="row col-md-4 center-block" style="float: none;">
         <div class="well well-sm">
-            <form method="POST" data-toggle="validator">
+            <form method="POST" action="/api/v1/request">
                 <div class="form-group">
-                    <label for="name">Student Name</label>
-                    <input class="form-control" id="name" name="name" required readonly data-maxlength="50" value="Bob">
+                    <label for="studentName">Student Name</label>
+                    <input class="form-control" id="studentName" name="studentName" required readonly data-maxlength="50" value="Bob">
                 </div>
                 <div class="form-group">
                     <label for="problem">Explain Computer Problem</label>
                     <textarea class="form-control" id="problem" rows="5" name="problem" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="period">What period of the day is it now?</label>
-                    <select class="form-control" id="period" name="period" required>
+                    <label for="classPeriod">What period of the day is it now?</label>
+                    <select class="form-control" id="classPeriod" name="classPeriod" required>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -24,16 +24,16 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="assettag">Asset Tag Number</label>
-                    <input class="form-control" id="assettag" name="assettag" type="number" required>
+                    <label for="computerId">Asset Tag Number</label>
+                    <input class="form-control" id="computerId" name="computerId" type="number" required>
                 </div>
                 <div class="form-group">
-                    <label for="teacher">What is your teacher for this period?</label>
-                    <input class="form-control" id="teacher" name="teacher" required data-maxlength="50">
+                    <label for="currentTeacher">What is your teacher for this period?</label>
+                    <input class="form-control" id="currentTeacher" name="currentTeacher" required data-maxlength="50">
                 </div>
                 <div class="form-group">
-                    <label for="nextteacher">Who is your teacher for next period?</label>
-                    <input class="form-control" id="nextteacher" name="nextteacher" required
+                    <label for="nextTeacher">Who is your teacher for next period?</label>
+                    <input class="form-control" id="nextTeacher" name="nextTeacher" required
                            data-maxlength="50">
                 </div>
                 <div class="form-group">
@@ -51,7 +51,7 @@
                         <option>10 (My laptop won't work at all)</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-default" formaction="/api/request">Submit</button>
+                <button type="submit" class="btn btn-default">Submit</button>
             </form>
         </div>
     </div>

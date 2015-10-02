@@ -3,7 +3,7 @@ var db = require('../../lib/db');
 var router = express.Router();
 
 router.post('/request', function (req, res) {
-    if (req.body) {
+    if (req.body == null) {
         res.json({
             error: true,
             message: 'Empty request'
@@ -19,7 +19,7 @@ router.post('/request', function (req, res) {
             computerId: req.body.computerId,
             currentTeacher: req.body.currentTeacher,
             nextTeacher: req.body.nextTeacher,
-            priority: req.body.priority
+            priority: parseInt(req.body.priority)
         });
     });
 
