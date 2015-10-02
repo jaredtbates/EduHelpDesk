@@ -10,11 +10,14 @@ var db = require('./lib/db');
 var routes = {
     index: require('./routes/index'),
     api: {
-        request: require('./routes/api/request')
+        v1: require('./routes/api/v1')
     }
 };
 
 var app = express();
+
+// json formatting
+app.set('json spaces', 2);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,7 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes.index);
-app.use('/api/request', routes.api.request);
+app.use('/api/v1', routes.api.v1);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -61,6 +64,5 @@ app.use(function (err, req, res, next) {
         error: {}
     });
 });
-
 
 module.exports = app;
