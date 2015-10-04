@@ -28,8 +28,8 @@ router.post('/request', function (req, res) {
 
 router.use('*', function (req, res) {
     res.json({
-        error: true,
-        message: 'API method not found'
+        statusCode: 404,
+        error: 'Not Found'
     });
 });
 
