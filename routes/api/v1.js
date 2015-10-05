@@ -5,8 +5,8 @@ var router = express.Router();
 router.post('/request', function (req, res) {
     if (req.body == null) {
         res.json({
-            error: true,
-            message: 'Empty request'
+            statusCode: 400,
+            error: 'Empty request'
         });
         return;
     }

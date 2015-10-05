@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var limit = require('express-better-ratelimit');
 
 var db = require('./lib/db');
 
@@ -64,5 +65,12 @@ app.use(function (err, req, res, next) {
         error: {}
     });
 });
+
+// rate limiting
+app.use(limit({
+    duration: 5000,
+    max: 30,
+    accessLimited: JSON.parse('{"statusCode":429,"error":"Rate limit exceeded"}')
+}));
 
 module.exports = app;
