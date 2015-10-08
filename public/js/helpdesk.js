@@ -1,3 +1,3 @@
-$(document).on('click', function() {
+$(document).find('#submitButton').on('click', function() {
 
 });
