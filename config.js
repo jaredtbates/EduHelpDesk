@@ -6,5 +6,6 @@ module.exports = {
         username: 'root',
         password: 'password',
         port: 3306
-    }
+    },
+    classPeriods: 7
 };

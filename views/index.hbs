@@ -2,29 +2,25 @@
 <div class="container">
     <div class="row col-md-4 center-block">
         <div class="well well-sm">
-            <form method="POST" action="/api/v1/request">
+            <form>
                 <div class="form-group">
-                    <label for="studentName">Student Name</label>
-                    <input class="form-control" id="studentName" name="studentName" required readonly data-maxlength="50" value="Bob">
+                    <label for="studentName">What is your name?</label>
+                    <input class="form-control" id="studentName" name="studentName" required data-maxlength="50">
                 </div>
                 <div class="form-group">
-                    <label for="problem">Explain Computer Problem</label>
+                    <label for="problem">What is your problem?</label>
                     <textarea class="form-control" id="problem" rows="5" name="problem" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="classPeriod">What period of the day is it now?</label>
+                    <label for="classPeriod">What class period is it now?</label>
                     <select class="form-control" id="classPeriod" name="classPeriod" required>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
+                        {{#times periods}}
+                            <option value="{{this}}">{{this}}</option>
+                        {{/times}}
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="computerId">Asset Tag Number</label>
+                    <label for="computerId">What is your computer ID?</label>
                     <input class="form-control" id="computerId" name="computerId" type="number" required>
                 </div>
                 <div class="form-group">
@@ -33,11 +29,10 @@
                 </div>
                 <div class="form-group">
                     <label for="nextTeacher">Who is your teacher for next period?</label>
-                    <input class="form-control" id="nextTeacher" name="nextTeacher" required
-                           data-maxlength="50">
+                    <input class="form-control" id="nextTeacher" name="nextTeacher" required data-maxlength="50">
                 </div>
                 <div class="form-group">
-                    <label for="priority">Priority</label> (1 is lowest, 10 is highest)
+                    <label for="priority">How important is this?</label> (1 is lowest, 10 is highest)
                     <select class="form-control" id="priority" name="priority" required>
                         <option>1 (Missing key on keyboard; minor damage)</option>
                         <option>2</option>
@@ -48,10 +43,10 @@
                         <option>7</option>
                         <option>8</option>
                         <option>9</option>
-                        <option>10 (My laptop won't work at all)</option>
+                        <option>10 (My computer won't work at all)</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-default" id="submitButton">Submit</button>
+                <button class="btn btn-success" id="submitButton">Submit</button>
             </form>
         </div>
     </div>

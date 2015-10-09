@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var limit = require('express-better-ratelimit');
+var handlebars = require('hbs');
 
 var db = require('./lib/db');
 
@@ -72,5 +73,14 @@ app.use(limit({
     max: 30,
     accessLimited: JSON.parse('{"statusCode":429,"error":"Rate limit exceeded"}')
 }));
+
+// handlebars helpers
+handlebars.registerHelper('times', function(n, block) {
+    var accum = '';
+    for (var i = 1; i < n; i++) {
+        accum += block.fn(i);
+    }
+    return accum;
+});
 
 module.exports = app;
