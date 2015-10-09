@@ -1,4 +1,4 @@
-$('#submitButton').on('click', function() {
+$('#submitRequestForm').on('submit', function() {
     $.ajax({
         type: 'POST',
         url: '/api/v1/request',
@@ -11,5 +11,6 @@ $('#submitButton').on('click', function() {
             nextTeacher: $('#nextTeacher').val(),
             priority: $('#priority').val()
         }
-    })
+    });
+    event.preventDefault();
 });
