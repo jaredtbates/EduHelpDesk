@@ -9,6 +9,7 @@ var handlebars = require('hbs');
 
 var routes = {
     index: require('./routes/index'),
+    admin: require('./routes/admin'),
     api: {
         v1: require('./routes/api/v1')
     }
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes.index);
 app.use('/api/v1', routes.api.v1);
+app.use('/admin', routes.admin);
 app.get('*', function(req, res) {
     res.redirect('/');
 });

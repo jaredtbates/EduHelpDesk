@@ -13,5 +13,5 @@ $('#submitRequestForm').on('submit', function() {
         }
     });
     event.preventDefault();
-    $('body').html('<br><div class="container"><div class="row col-md-4 col-md-offset-4 well well-sm"><p class="text-center">Your request has been submitted.</p></div></div>');
+    $('#submitRequestForm').parent().html('<p class="text-center">Your request has been submitted.</p>');
 });
