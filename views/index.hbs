@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row col-md-4 col-md-offset-4">
         <div class="well well-sm">
-            <form id="submitRequestForm">
+            <form id="submitRequestForm" method="POST" >
                 <div class="form-group">
                     <label for="studentName">What is your name?</label>
                     <input class="form-control" id="studentName" name="studentName" required data-maxlength="50">
@@ -30,9 +30,11 @@
                     <label for="nextTeacher">Who is your teacher for next period?</label>
                     <input class="form-control" id="nextTeacher" name="nextTeacher" required data-maxlength="50">
                 </div>
-                <div class="form-group text-center">
+                <div class="form-group">
                     <label for="priority">How important is this?</label> (1 is lowest, 10 is highest)
-                    <input id="priority" type="text" />
+                    <div class="text-center">
+                        <input class="form-control" id="priority" name="priority" type="text" required>
+                    </div>
                 </div>
                 <button class="btn btn-success" type="submit">Submit</button>
             </form>
