@@ -30,20 +30,9 @@
                     <label for="nextTeacher">Who is your teacher for next period?</label>
                     <input class="form-control" id="nextTeacher" name="nextTeacher" required data-maxlength="50">
                 </div>
-                <div class="form-group">
+                <div class="form-group text-center">
                     <label for="priority">How important is this?</label> (1 is lowest, 10 is highest)
-                    <select class="form-control" id="priority" name="priority" required>
-                        <option>1 (Missing key on keyboard; minor damage)</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                        <option>10 (My computer won't work at all)</option>
-                    </select>
+                    <input id="priority" type="text" />
                 </div>
                 <button class="btn btn-success" type="submit">Submit</button>
             </form>

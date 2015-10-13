@@ -15,3 +15,13 @@ $('#submitRequestForm').on('submit', function() {
     event.preventDefault();
     $('#submitRequestForm').parent().html('<p class="text-center">Your request has been submitted.</p>');
 });
+
+$(document).ready(function() {
+    $('#priority').slider({
+        id: 'priority',
+        min: 1,
+        max: 10,
+        tooltip: 'always',
+        tooltip_position: 'bottom'
+    });
+});
