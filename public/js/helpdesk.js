@@ -9,6 +9,7 @@ $(document).ready(function() {
 });
 
 $('#submitRequestForm').on('submit', function() {
+    event.preventDefault();
     $.ajax({
         type: 'POST',
         url: '/api/v1/request',
@@ -19,16 +20,13 @@ $('#submitRequestForm').on('submit', function() {
             computerId: $('#computerId').val(),
             currentTeacher: $('#currentTeacher').val(),
             nextTeacher: $('#nextTeacher').val(),
-            priority: $('#priority').slider('getValue')
+            priority: $('#priority').slider().val()
         }
     });
-    event.preventDefault();
     $('#submitRequestForm').parent().html('<p class="text-center">Your request has been submitted.</p>');
-});
-
-$("#submitRequestForm").keypress(function(event) {
+}).keypress(function(event) {
     if (event.which == 13) {
         event.preventDefault();
-        $("form").submit();
+        $('#submitRequestForm').submit();
     }
 });

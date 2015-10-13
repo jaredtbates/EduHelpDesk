@@ -34,15 +34,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes.index);
 app.use('/api/v1', routes.api.v1);
 app.use('/admin', routes.admin);
-app.get('*', function(req, res) {
+app.use('*', function(req, res) {
     res.redirect('/');
-});
-
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
 });
 
 // error handlers
