@@ -11,19 +11,20 @@ router.post('/request', function (req, res) {
         return;
     }
 
-    var request = db.Request.sync().then(function () {
-        return db.Request.create({
-            studentName: req.body.studentName,
-            problem: req.body.problem,
-            classPeriod: req.body.classPeriod,
-            computerId: req.body.computerId,
-            currentTeacher: req.body.currentTeacher,
-            nextTeacher: req.body.nextTeacher,
-            priority: parseInt(req.body.priority)
-        });
-    });
+    db.Request.build({
+        studentName: req.body.studentName,
+        problem: req.body.problem,
+        classPeriod: req.body.classPeriod,
+        computerId: req.body.computerId,
+        currentTeacher: req.body.currentTeacher,
+        nextTeacher: req.body.nextTeacher,
+        priority: parseInt(req.body.priority)
+    }).save();
 
-    res.send('Success!\n' + request.toString());
+    res.json({
+        statusCode: 201,
+        error: 'Request submitted'
+    });
 });
 
 router.use('*', function (req, res) {
