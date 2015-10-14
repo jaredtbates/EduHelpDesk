@@ -4,13 +4,15 @@ var db = require('../lib/db');
 
 router.get('/', function (req, res) {
     res.render('admin/index', {
-        title: 'Help Desk | Admin'
+        title: 'Help Desk | Admin',
+        requests: db.Request.findAll()
     });
 });
 
 router.get('/users', function (req, res) {
     res.render('admin/users', {
-        title: 'Help Desk | Users'
+        title: 'Help Desk | Admins',
+        admins: db.Admin.findAll()
     });
 });
 
