@@ -14,9 +14,9 @@
                 <div class="form-group">
                     <label for="classPeriod">What class period is it now?</label>
                     <select class="form-control" id="classPeriod" name="classPeriod" required>
-                        {{#times periods}}
-                            <option value="{{this}}">{{this}}</option>
-                        {{/times}}
+                        <% for (var i = 1; i <= periods; i++) { %>
+                            <option value="<%- i %>"><%- i %></option>
+                        <% } %>
                     </select>
                 </div>
                 <div class="form-group">
