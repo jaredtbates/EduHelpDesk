@@ -1,45 +1,58 @@
 <%- include('../header') -%>
 <div class="container-fluid">
-    <div class="row col-md-10 col-md-offset-1">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Problem</th>
-                    <th>Period</th>
-                    <th>Asset Tag</th>
-                    <th>Teacher</th>
-                    <th>Next Teacher</th>
-                    <th>Priority</th>
-                    <th>Time</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <% requests.forEach(function(request) { %>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <table class="table table-hover">
+                <thead>
                     <tr>
-                        <th scope="row"><%- request.id %></th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Problem</th>
+                        <th>Period</th>
+                        <th>Computer ID</th>
+                        <th>Teacher</th>
+                        <th>Next Teacher</th>
+                        <th>Priority</th>
+                        <th>Time</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% requests.forEach(function(request) { %>
+                    <tr>
+                        <th><%- request.id %></th>
+                        <td><%- request.studentName %></td>
+                        <td><%- request.problem %></td>
+                        <td><%- request.classPeriod %></td>
+                        <td><%- request.computerId %></td>
+                        <td><%- request.currentTeacher %></td>
+                        <td><%- request.nextTeacher %></td>
+                        <td style="width: 20px;"><%- request.priority %></td>
+                        <td><%- request.createdAt.getMonth() + '/'
+                            + request.createdAt.getDate() + '/'
+                            + request.createdAt.getFullYear().toString().substring(2) + ' '
+                            + ((request.createdAt.getHours() + 24) % 12 || 12) + ':'
+                            + request.createdAt.getMinutes() %></td>
                         <td style="width: 30px;">
                             <div class="dropdown">
                                 <button class="btn btn-default" id="optionsDropdown" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="true"><span
-                                        class="glyphicon glyphicon-cog"
-                                        aria-hidden="true"></span>
+                                            class="glyphicon glyphicon-cog"
+                                            aria-hidden="true"></span>
                                     Options <span class="caret"></span></button>
                                 <ul class="dropdown-menu" aria-labelledby="optionsDropdown">
                                     <?php if (!$row['contacted'] && !$row['received'] && !$row['resolved']): ?>
                                     <li><a href="#" class="contact"><span class="glyphicon glyphicon-phone-alt"
                                                                           aria-hidden="true"></span> Mark as
-                                        Attempted Contact</a></li><?php endif ?>
+                                            Attempted Contact</a></li><?php endif ?>
                                     <?php if (!$row['resolved'] && !$row['received']): ?>
                                     <li><a href="#" class="receive"><span class="glyphicon glyphicon-inbox"
                                                                           aria-hidden="true"></span>
-                                        Mark as Received</a></li><?php endif ?>
+                                            Mark as Received</a></li><?php endif ?>
                                     <?php if (!$row['resolved']): ?>
                                     <li><a href="#" class="resolve"><span class="glyphicon glyphicon-check"
                                                                           aria-hidden="true"></span>
-                                        Mark as Resolved</a></li><?php endif ?>
+                                            Mark as Resolved</a></li><?php endif ?>
                                     <?php if (!$row['resolved']): ?>
                                     <li class="divider"></li><?php endif ?>
                                     <li><a href="#" class="delete"><span class="glyphicon glyphicon-trash"
@@ -48,22 +61,23 @@
                             </div>
                         </td>
                     </tr>
-                <% }); %>
-                <!--<?php while ($row = $result->fetch_assoc()):
-                echo '<tr' . ($row['resolved'] ? ' class="success" ' : ($row['received'] ? ' class="info" ' : ($row['contacted'] ? ' class="warning" ' : ($row['priority'] > 7 ? ' class="danger" ' : '')))) . '>';
-                echo '<th scope="row">' . $row['requestid'] . '</th>';
-                echo '<td>' . $row['name'] . '</td>';
-                echo '<td style="word-wrap: break-word; min-width: 150px; max-width: 150px;">' . $row['problem'] . '</td>';
-                echo '<td>' . $row['period'] . '</td>';
-                echo '<td>' . $row['assettag'] . '</td>';
-                echo '<td>' . $row['teacher'] . '</td>';
-                echo '<td>' . $row['nextteacher'] . '</td>';
-                echo '<td style="width: 20px;">' . $row['priority'] . '</td>';
-                echo '<td>' . date('n/j/y g:hA', strtotime($row['time'])) . '</td>';
-                ?>
-                <?php endwhile ?>-->
-            </tbody>
-        </table>
+                    <% }); %>
+                    <!--<?php while ($row = $result->fetch_assoc()):
+                    echo '<tr' . ($row['resolved'] ? ' class="success" ' : ($row['received'] ? ' class="info" ' : ($row['contacted'] ? ' class="warning" ' : ($row['priority'] > 7 ? ' class="danger" ' : '')))) . '>';
+                    echo '<th scope="row">' . $row['requestid'] . '</th>';
+                    echo '<td>' . $row['name'] . '</td>';
+                    echo '<td style="word-wrap: break-word; min-width: 150px; max-width: 150px;">' . $row['problem'] . '</td>';
+                    echo '<td>' . $row['period'] . '</td>';
+                    echo '<td>' . $row['assettag'] . '</td>';
+                    echo '<td>' . $row['teacher'] . '</td>';
+                    echo '<td>' . $row['nextteacher'] . '</td>';
+                    echo '<td style="width: 20px;">' . $row['priority'] . '</td>';
+                    echo '<td>' . date('n/j/y g:hA', strtotime($row['time'])) . '</td>';
+                    ?>
+                    <?php endwhile ?>-->
+                </tbody>
+            </table>
+        </div>
     </div>
     <div class="row col-md-10 col-md-offset-1">
         <a href="/admin/admins"><span class="glyphicon glyphicon-user"></span></a>

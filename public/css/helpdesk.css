@@ -5,3 +5,9 @@ body .container {
 #priority .slider-selection {
     background: #BABABA;
 }
+
+.problemRow {
+    word-wrap: break-word;
+    min-width: 150px;
+    max-width: 150px;
+}
