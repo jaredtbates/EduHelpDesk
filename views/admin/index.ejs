@@ -17,9 +17,9 @@
                 </tr>
             </thead>
             <tbody>
-                {{#each requests}}
+                <% requests.forEach(function(request) { %>
                     <tr>
-                        <th scope="row">{{this}}</th>
+                        <th scope="row"><%- request.id %></th>
                         <td style="width: 30px;">
                             <div class="dropdown">
                                 <button class="btn btn-default" id="optionsDropdown" data-toggle="dropdown"
@@ -48,7 +48,7 @@
                             </div>
                         </td>
                     </tr>
-                {{/each}}
+                <% }); %>
                 <!--<?php while ($row = $result->fetch_assoc()):
                 echo '<tr' . ($row['resolved'] ? ' class="success" ' : ($row['received'] ? ' class="info" ' : ($row['contacted'] ? ' class="warning" ' : ($row['priority'] > 7 ? ' class="danger" ' : '')))) . '>';
                 echo '<th scope="row">' . $row['requestid'] . '</th>';

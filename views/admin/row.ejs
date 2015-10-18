@@ -1,0 +1,30 @@
+<tr>
+    <th scope="row"><%= id %></th>
+    <td style="width: 30px;">
+        <div class="dropdown">
+            <button class="btn btn-default" id="optionsDropdown" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="true"><span
+                        class="glyphicon glyphicon-cog"
+                        aria-hidden="true"></span>
+                Options <span class="caret"></span></button>
+            <ul class="dropdown-menu" aria-labelledby="optionsDropdown">
+                <?php if (!$row['contacted'] && !$row['received'] && !$row['resolved']): ?>
+                <li><a href="#" class="contact"><span class="glyphicon glyphicon-phone-alt"
+                                                      aria-hidden="true"></span> Mark as
+                        Attempted Contact</a></li><?php endif ?>
+                <?php if (!$row['resolved'] && !$row['received']): ?>
+                <li><a href="#" class="receive"><span class="glyphicon glyphicon-inbox"
+                                                      aria-hidden="true"></span>
+                        Mark as Received</a></li><?php endif ?>
+                <?php if (!$row['resolved']): ?>
+                <li><a href="#" class="resolve"><span class="glyphicon glyphicon-check"
+                                                      aria-hidden="true"></span>
+                        Mark as Resolved</a></li><?php endif ?>
+                <?php if (!$row['resolved']): ?>
+                <li class="divider"></li><?php endif ?>
+                <li><a href="#" class="delete"><span class="glyphicon glyphicon-trash"
+                                                     aria-hidden="true"></span> Delete</a></li>
+            </ul>
+        </div>
+    </td>
+</tr>
