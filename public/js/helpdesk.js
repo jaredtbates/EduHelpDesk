@@ -31,7 +31,7 @@ $('#submitRequestForm').on('submit', function() {
 });
 
 $(document).ready(function () {
-    $('.table').DataTable({
+    $('.table').dataTable({
         "columnDefs": [
             {
                 "targets": 0,
@@ -67,6 +67,7 @@ $(document).ready(function () {
                 "orderable": false
             }
         ],
-        "order": [[0, "desc"]]
+        "order": [[0, "desc"]],
+        "pageLength": 100
     });
 });
