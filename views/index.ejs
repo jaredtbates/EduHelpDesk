@@ -1,4 +1,4 @@
-<%- include('header') -%>
+<%- include('header') %>
 <div class="container">
     <div class="row col-md-4 col-md-offset-4">
         <div class="well well-sm">
@@ -15,13 +15,14 @@
                     <label for="classPeriod">What class period is it now?</label>
                     <select class="form-control" id="classPeriod" name="classPeriod" required>
                         <% for (var i = 1; i <= periods; i++) { %>
-                            <option value="<%- i %>"><%- i %></option>
+                        <option value="<%- i %>"><%- i %></option>
                         <% } %>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="computerId">What is your computer ID?</label>
-                    <input class="form-control" id="computerId" name="computerId" type="number" min="1" step="1" required>
+                    <input class="form-control" id="computerId" name="computerId" type="number" min="1" step="1"
+                           required>
                 </div>
                 <div class="form-group">
                     <label for="currentTeacher">What is your teacher for this period?</label>
@@ -42,4 +43,4 @@
         </div>
     </div>
 </div>
-<%- include('footer') -%>
+<%- include('footer') %>

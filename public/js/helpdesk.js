@@ -71,3 +71,12 @@ $(document).ready(function () {
         "pageLength": 100
     });
 });
+
+$(".delete").on('click', function (e) {
+    e.preventDefault();
+    $.ajax({
+        type: "DELETE",
+        url: "/api/v1/request/" + $(this).parent().parent().parent().parent().parent().find("th").text()
+    });
+    $(this).closest("tr").hide();
+});

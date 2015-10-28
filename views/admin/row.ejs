@@ -11,17 +11,21 @@
                 <?php if (!$row['contacted'] && !$row['received'] && !$row['resolved']): ?>
                 <li><a href="#" class="contact"><span class="glyphicon glyphicon-phone-alt"
                                                       aria-hidden="true"></span> Mark as
-                        Attempted Contact</a></li><?php endif ?>
+                        Attempted Contact</a></li>
+                <?php endif ?>
                 <?php if (!$row['resolved'] && !$row['received']): ?>
                 <li><a href="#" class="receive"><span class="glyphicon glyphicon-inbox"
                                                       aria-hidden="true"></span>
-                        Mark as Received</a></li><?php endif ?>
+                        Mark as Received</a></li>
+                <?php endif ?>
                 <?php if (!$row['resolved']): ?>
                 <li><a href="#" class="resolve"><span class="glyphicon glyphicon-check"
                                                       aria-hidden="true"></span>
-                        Mark as Resolved</a></li><?php endif ?>
+                        Mark as Resolved</a></li>
+                <?php endif ?>
                 <?php if (!$row['resolved']): ?>
-                <li class="divider"></li><?php endif ?>
+                <li class="divider"></li>
+                <?php endif ?>
                 <li><a href="#" class="delete"><span class="glyphicon glyphicon-trash"
                                                      aria-hidden="true"></span> Delete</a></li>
             </ul>

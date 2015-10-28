@@ -23,7 +23,17 @@ router.post('/request', function (req, res) {
 
     res.json({
         statusCode: 201,
-        error: 'Request submitted'
+        body: 'Request submitted'
+    });
+});
+
+router.delete('/request/:id', function(req, res) {
+    db.Request.findById(req.params.id).then(function(request) {
+        request.destroy();
+    });
+
+    res.json({
+        statusCode: 204
     });
 });
 
