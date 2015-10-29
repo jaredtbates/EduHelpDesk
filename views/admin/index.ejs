@@ -64,19 +64,6 @@
                     </td>
                 </tr>
                 <% }); %>
-                <!--<?php while ($row = $result->fetch_assoc()):
-                echo '<tr' . ($row['resolved'] ? ' class="success" ' : ($row['received'] ? ' class="info" ' : ($row['contacted'] ? ' class="warning" ' : ($row['priority'] > 7 ? ' class="danger" ' : '')))) . '>';
-                echo '<th scope="row">' . $row['requestid'] . '</th>';
-                echo '<td>' . $row['name'] . '</td>';
-                echo '<td style="word-wrap: break-word; min-width: 150px; max-width: 150px;">' . $row['problem'] . '</td>';
-                echo '<td>' . $row['period'] . '</td>';
-                echo '<td>' . $row['assettag'] . '</td>';
-                echo '<td>' . $row['teacher'] . '</td>';
-                echo '<td>' . $row['nextteacher'] . '</td>';
-                echo '<td style="width: 20px;">' . $row['priority'] . '</td>';
-                echo '<td>' . date('n/j/y g:hA', strtotime($row['time'])) . '</td>';
-                ?>
-                <?php endwhile ?>-->
                 </tbody>
             </table>
         </div>
