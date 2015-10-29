@@ -19,7 +19,7 @@
                 </thead>
                 <tbody>
                 <% requests.forEach(function(request) { %>
-                <tr>
+                <tr <%- (request.resolved ? ' class="success" ' : (request.received ? ' class="info" ' : (request.contacted ? ' class="warning" ' : (request.priority > 7 ? ' class="danger" ' : '')))) %>>
                     <th><%- request.id %></th>
                     <td><%- request.studentName %></td>
                     <td><%- request.problem %></td>
