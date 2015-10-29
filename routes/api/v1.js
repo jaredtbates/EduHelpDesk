@@ -3,14 +3,6 @@ var db = require('../../lib/db');
 var router = express.Router();
 
 router.post('/request', function (req, res) {
-    if (req.body == null) {
-        res.json({
-            statusCode: 400,
-            error: 'Empty request'
-        });
-        return;
-    }
-
     db.Request.build({
         studentName: req.body.studentName,
         problem: req.body.problem,
@@ -24,6 +16,16 @@ router.post('/request', function (req, res) {
     res.json({
         statusCode: 201,
         body: 'Request submitted'
+    });
+});
+
+router.put('/request/:id', function(req, res) {
+    db.Request.findById(req.params.id).then(function(request) {
+        request.update(req.body);
+    });
+
+    res.json({
+        statusCode: 204
     });
 });
 

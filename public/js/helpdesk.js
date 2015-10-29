@@ -72,11 +72,53 @@ $(document).ready(function () {
     });
 });
 
-$(".delete").on('click', function (e) {
+$('.contact').on('click', function (e) {
     e.preventDefault();
     $.ajax({
-        type: "DELETE",
-        url: "/api/v1/request/" + $(this).parent().parent().parent().parent().parent().find("th").text()
+        type: 'PUT',
+        url: '/api/v1/request/' + $(this).parent().parent().parent().parent().parent().find('th').text(),
+        data: {
+            contacted: true
+        }
     });
-    $(this).closest("tr").hide();
+    $(this).closest('tr').removeClass();
+    $(this).closest('tr').addClass('warning');
+    $(this).hide();
+});
+
+$('.receive').click(function (e) {
+    e.preventDefault();
+    $.ajax({
+        type: 'PUT',
+        url: '/api/v1/request/' + $(this).parent().parent().parent().parent().parent().find('th').text(),
+        data: {
+            received: true
+        }
+    });
+    $(this).closest('tr').removeClass();
+    $(this).closest('tr').addClass('info');
+    $(this).hide();
+});
+
+$('.resolve').click(function (e) {
+    e.preventDefault();
+    $.ajax({
+        type: 'PUT',
+        url: '/api/v1/request/' + $(this).parent().parent().parent().parent().parent().find('th').text(),
+        data: {
+            resolved: true
+        }
+    });
+    $(this).closest('tr').removeClass();
+    $(this).closest('tr').addClass('success');
+    $(this).hide();
+});
+
+$('.delete').on('click', function (e) {
+    e.preventDefault();
+    $.ajax({
+        type: 'DELETE',
+        url: '/api/v1/request/' + $(this).parent().parent().parent().parent().parent().find('th').text()
+    });
+    $(this).closest('tr').hide();
 });
