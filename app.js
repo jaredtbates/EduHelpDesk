@@ -66,7 +66,7 @@ app.use(function (err, req, res) {
 // rate limiting
 app.use(limit({
     duration: 5000,
-    max: 30,
+    max: 10,
     accessLimited: JSON.parse('{"statusCode":429,"error":"Rate limit exceeded"}')
 }));
 
