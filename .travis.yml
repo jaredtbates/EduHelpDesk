@@ -3,3 +3,5 @@ node_js:
   - "stable"
   - "unstable"
   - "iojs"
+env:
+  - CXX=g++-4.8
