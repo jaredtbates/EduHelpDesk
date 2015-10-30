@@ -6,20 +6,20 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "body-parser": "^1.14.1",
-    "cookie-parser": "^1.4.0",
-    "debug": "^2.2.0",
-    "ejs": "^2.3.4",
-    "express": "^4.13.1",
-    "express-better-ratelimit": "^1.1.2",
-    "googleapis": "^2.1.5",
-    "morgan": "^1.6.1",
-    "mysql": "^2.9.0",
-    "pg": "^4.4.2",
-    "pg-hstore": "^2.3.2",
-    "sequelize": "^3.9.0",
-    "serve-favicon": "^2.3.0",
-    "sqlite3": "^3.1.0",
-    "tedious": "^1.12.3"
+    "body-parser": "^1.*.*",
+    "cookie-parser": "^1.*.*",
+    "debug": "^2.*.*",
+    "ejs": "^2.*.*",
+    "express": "^4.*.*",
+    "express-better-ratelimit": "^1.*.*",
+    "googleapis": "^2.*.*",
+    "morgan": "^1.*.*",
+    "mysql": "^2.*.*",
+    "pg": "^4.*.*",
+    "pg-hstore": "^2.*.*",
+    "sequelize": "^3.*.*",
+    "serve-favicon": "^2.*.*",
+    "sqlite3": "^3.*.*",
+    "tedious": "^1.*.*"
   }
 }
