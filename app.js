@@ -1,16 +1,20 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var limit = require('express-better-ratelimit');
+var session = require('express-session');
+var passport = require('passport');
 
 var routes = {
     index: require('./routes/index'),
     admin: require('./routes/admin'),
     api: {
         v1: require('./routes/api/v1')
+    },
+    auth: {
+        callback: require('./routes/auth/google')
     }
 };
 
@@ -23,13 +27,20 @@ app.set('json spaces', 2);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+    secret: '9e`%(K7s9T3w&9-d4n^YvX);9qVz`sM',
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
+
+// routes
 app.use('/', routes.index);
 app.use('/api/v1', routes.api.v1);
 app.use('/admin', routes.admin);
@@ -69,5 +80,7 @@ app.use(limit({
     max: 10,
     accessLimited: JSON.parse('{"statusCode":429,"error":"Rate limit exceeded"}')
 }));
+
+// auth
 
 module.exports = app;

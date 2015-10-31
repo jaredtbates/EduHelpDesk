@@ -12,7 +12,7 @@
     "ejs": "^2.3.4",
     "express": "^4.13.1",
     "express-better-ratelimit": "^1.1.2",
-    "googleapis": "^2.1.5",
+    "express-session": "^1.12.1",
     "morgan": "^1.6.1",
     "mysql": "^2.9.0",
     "passport": "^0.3.0",
@@ -22,7 +22,6 @@
     "pg": "^4.4.2",
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.13.0",
-    "serve-favicon": "^2.3.0",
     "sqlite3": "^3.1.0",
     "tedious": "^1.13.1"
   }

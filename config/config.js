@@ -12,7 +12,7 @@ module.exports = {
         port: 3306
     },
     app: {
-        authType: 'google',
+        authProvider: 'google',
         classPeriods: 7
     }
 };
