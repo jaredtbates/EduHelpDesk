@@ -6,31 +6,7 @@ $(document).ready(function() {
         tooltip: 'always',
         tooltip_position: 'bottom'
     });
-});
 
-$('#submitRequestForm').on('submit', function() {
-    event.preventDefault();
-    $.ajax({
-        type: 'POST',
-        url: '/api/v1/request',
-        data: {
-            studentName: $('#studentName').val(),
-            problem: $('#problem').val(),
-            classPeriod: $('#classPeriod').val(),
-            computerId: $('#computerId').val(),
-            currentTeacher: $('#currentTeacher').val(),
-            nextTeacher: $('#nextTeacher').val(),
-            priority: $('#priority').slider().val()
-        }
-    });
-    $('#submitRequestForm').parent().html('<p class="text-center">Your request has been submitted.</p>');
-}).keypress(function(event) {
-    if (event.which == 13) {
-        event.preventDefault();
-    }
-});
-
-$(document).ready(function () {
     $('.table').dataTable({
         "columnDefs": [
             {
@@ -72,6 +48,28 @@ $(document).ready(function () {
     });
 });
 
+$('#submitRequestForm').on('submit', function() {
+    event.preventDefault();
+    $.ajax({
+        type: 'POST',
+        url: '/api/v1/request',
+        data: {
+            studentName: $('#studentName').val(),
+            problem: $('#problem').val(),
+            classPeriod: $('#classPeriod').val(),
+            computerId: $('#computerId').val(),
+            currentTeacher: $('#currentTeacher').val(),
+            nextTeacher: $('#nextTeacher').val(),
+            priority: $('#priority').slider().val()
+        }
+    });
+    $('#submitRequestForm').parent().html('<p class="text-center">Your request has been submitted.</p>');
+}).keypress(function(event) {
+    if (event.which == 13) {
+        event.preventDefault();
+    }
+});
+
 $('.contact').on('click', function (e) {
     e.preventDefault();
     $.ajax({
@@ -86,7 +84,7 @@ $('.contact').on('click', function (e) {
     $(this).hide();
 });
 
-$('.receive').click(function (e) {
+$('.receive').on('click', function (e) {
     e.preventDefault();
     $.ajax({
         type: 'PUT',
@@ -100,7 +98,7 @@ $('.receive').click(function (e) {
     $(this).hide();
 });
 
-$('.resolve').click(function (e) {
+$('.resolve').on('click', function (e) {
     e.preventDefault();
     $.ajax({
         type: 'PUT',
