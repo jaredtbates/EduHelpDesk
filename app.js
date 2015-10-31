@@ -7,6 +7,7 @@ var limit = require('express-better-ratelimit');
 var session = require('express-session');
 var passport = require('passport');
 
+var appConfig = require('./config/app.json');
 
 var routes = {
     index: require('./routes/index'),
@@ -15,7 +16,7 @@ var routes = {
         v1: require('./routes/api/v1')
     },
     auth: {
-        callback: require('./routes/auth/google')
+        google: require('./routes/auth/google')
     }
 };
 
@@ -45,6 +46,7 @@ app.use(passport.session());
 app.use('/', routes.index);
 app.use('/api/v1', routes.api.v1);
 app.use('/admin', routes.admin);
+app.use('/auth/google', routes.auth.google);
 app.use('*', function(req, res) {
     res.redirect('/');
 });
@@ -85,7 +87,19 @@ app.use(limit({
 // auth
 switch (config.app.authProvider) {
     case 'google':
-
+        var GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
+        var googleConfig = require('./config/auth/google.json');
+        passport.use(new GoogleStrategy({
+                consumerKey: googleConfig.clientID,
+                consumerSecret: googleConfig.clientSecret,
+                callbackURL: "http://" + config.app.url + "/auth/google/callback"
+            },
+            function(token, tokenSecret, profile, done) {
+                User.findOrCreate({ googleId: profile.id }, function (err, user) {
+                    return done(err, user);
+                });
+            }
+        ));
         break;
     default:
         break;
