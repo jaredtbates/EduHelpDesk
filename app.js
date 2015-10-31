@@ -7,6 +7,7 @@ var limit = require('express-better-ratelimit');
 var session = require('express-session');
 var passport = require('passport');
 
+
 var routes = {
     index: require('./routes/index'),
     admin: require('./routes/admin'),
@@ -82,5 +83,12 @@ app.use(limit({
 }));
 
 // auth
+switch (config.app.authProvider) {
+    case 'google':
+
+        break;
+    default:
+        break;
+}
 
 module.exports = app;
