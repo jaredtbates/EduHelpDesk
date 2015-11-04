@@ -4,13 +4,13 @@
  * Module dependencies.
  */
 var app = require('../app');
-var config = require('../config/config');
+var serverConfig = require('../config/server.json');
 var http = require('http');
 
 /**
  * Get port from configuration and store in Express.
  */
-var port = normalizePort(config.server.port || '3000');
+var port = normalizePort(serverConfig.port || '3000');
 app.set('port', port);
 
 /**
@@ -21,7 +21,7 @@ var server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
-server.listen(port, config.server.address || '0.0.0.0');
+server.listen(port, serverConfig.address || '0.0.0.0');
 server.on('error', onError);
 server.on('listening', onListening);
 

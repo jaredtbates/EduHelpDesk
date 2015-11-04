@@ -85,7 +85,7 @@ app.use(limit({
 }));
 
 // auth
-switch (config.app.authProvider) {
+switch (appConfig.authProvider) {
     case 'google':
         var GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
         var googleConfig = require('./config/auth/google.json');
