@@ -41,7 +41,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 // routes
 app.use('/', routes.index);
 app.use('/api/v1', routes.api.v1);
@@ -92,7 +91,7 @@ switch (appConfig.authProvider) {
         passport.use(new GoogleStrategy({
                 consumerKey: googleConfig.clientID,
                 consumerSecret: googleConfig.clientSecret,
-                callbackURL: "http://" + config.app.url + "/auth/google/callback"
+                callbackURL: "http://" + appConfig.url + "/auth/google/callback"
             },
             function(token, tokenSecret, profile, done) {
                 User.findOrCreate({ googleId: profile.id }, function (err, user) {
