@@ -101,6 +101,8 @@ switch (appConfig.authProvider) {
         ));
         break;
     default:
+        console.log('\x1b[31mERROR: An invalid authentication scheme has been specified in app.json!\x1b[0m');
+        process.exit(1);
         break;
 }
 
