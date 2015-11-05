@@ -84,18 +84,26 @@ app.use(limit({
 }));
 
 // auth
+passport.serializeUser(function(user, done) {
+    done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+    done(null, user);
+});
+
 switch (appConfig.authProvider) {
     case 'google':
-        var GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
+        var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
         var googleConfig = require('./config/auth/google.json');
         passport.use(new GoogleStrategy({
-                consumerKey: googleConfig.clientID,
-                consumerSecret: googleConfig.clientSecret,
+                clientID: googleConfig.clientID,
+                clientSecret: googleConfig.clientSecret,
                 callbackURL: "http://" + appConfig.url + "/auth/google/callback"
             },
             function(token, tokenSecret, profile, done) {
-                User.findOrCreate({ googleId: profile.id }, function (err, user) {
-                    return done(err, user);
+                process.nextTick(function () {
+                    return done(null, profile);
                 });
             }
         ));

@@ -5,7 +5,11 @@ var passport = require('passport');
 var appConfig = require('../config/app.json');
 
 router.get('/', function (req, res) {
-    if (!req.isAuthenticated())
+    if (!req.isAuthenticated()) {
+        res.redirect('/auth/google');
+        return;
+    }
+
     res.render('index', {
         title: 'Help Desk',
         periods: appConfig.classPeriods || 7
