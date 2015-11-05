@@ -12,7 +12,8 @@ router.get('/', function (req, res) {
 
     res.render('index', {
         title: 'Help Desk',
-        periods: appConfig.classPeriods || 7
+        periods: appConfig.classPeriods || 7,
+        user: req.user
     });
 });
 
