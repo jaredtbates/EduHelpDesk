@@ -11,13 +11,4 @@ router.get('/', function (req, res) {
     });
 });
 
-router.get('/users', function (req, res) {
-    db.Admin.findAll().then(function(admins) {
-        res.render('admin/users', {
-            title: 'Help Desk | Admins',
-            admins: admins
-        });
-    });
-});
-
 module.exports = router;
