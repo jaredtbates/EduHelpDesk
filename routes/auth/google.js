@@ -6,10 +6,8 @@ router.get('/', passport.authenticate('google', {
     scope: 'profile'
 }));
 
-router.get('/callback', function(req) {
-    passport.authenticate('google', {
-        successRedirect: req.params.page || '/'
-    })
-});
+router.get('/callback', passport.authenticate('google', {
+    successRedirect: '/'
+}));
 
 module.exports = router;
