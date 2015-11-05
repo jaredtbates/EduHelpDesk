@@ -1,11 +1,18 @@
 var express = require('express');
 var router = express.Router();
-var config = require('../config');
+
+var appConfig = require('../config/app.json');
 
 router.get('/', function (req, res) {
+    if (!req.isAuthenticated()) {
+        res.redirect('/auth/google');
+        return;
+    }
+
     res.render('index', {
         title: 'Help Desk',
-        periods: config.app.classPeriods || 7
+        periods: appConfig.classPeriods || 7,
+        user: req.user
     });
 });
 
