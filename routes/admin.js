@@ -14,6 +14,11 @@ router.get('/', function (req, res) {
         return;
     }
 
+    if (appConfig.admins.indexOf(req.user.emails[0].value) == -1) {
+        res.redirect('/');
+        return;
+    }
+
     db.Request.findAll().then(function(requests) {
         res.render('admin/index', {
             title: 'Help Desk | Admin',

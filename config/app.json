@@ -1,5 +1,8 @@
 {
   "url": "localhost",
   "authProvider": "google",
-  "classPeriods": 7
+  "classPeriods": 7,
+  "admins": [
+    "jbates@forsythr3.k12.mo.us"
+  ]
 }
