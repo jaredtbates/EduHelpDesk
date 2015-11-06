@@ -5,7 +5,11 @@ var appConfig = require('../config/app.json');
 
 router.get('/', function (req, res) {
     if (!req.isAuthenticated()) {
-        res.redirect('/auth/google');
+        switch (appConfig.authProvider) {
+            case 'google':
+                res.redirect('/auth/google');
+                break;
+        }
         return;
     }
 
