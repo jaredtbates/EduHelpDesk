@@ -1,6 +1,7 @@
 {
   "url": "localhost",
   "authProvider": "google",
+  "sessionSecret": "RANDOMLY GENERATED STRING - CHANGE ME",
   "classPeriods": 7,
   "admins": [
     "jbates@forsythr3.k12.mo.us"
