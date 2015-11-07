@@ -16,7 +16,8 @@ var routes = {
         v1: require('./routes/api/v1')
     },
     auth: {
-        google: require('./routes/auth/google')
+        google: require('./routes/auth/google'),
+        microsoft: require('./routes/auth/microsoft')
     }
 };
 
@@ -45,7 +46,46 @@ app.use(passport.session());
 app.use('/', routes.index);
 app.use('/api/v1', routes.api.v1);
 app.use('/admin', routes.admin);
-app.use('/auth/google', routes.auth.google);
+
+switch (appConfig.authProvider) {
+    case 'google':
+        app.use('/auth/google', routes.auth.google);
+        var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+        var googleConfig = require('./config/auth/google.json');
+        passport.use(new GoogleStrategy({
+                clientID: googleConfig.clientID,
+                clientSecret: googleConfig.clientSecret,
+                callbackURL: "http://" + appConfig.url + "/auth/google/callback"
+            },
+            function(token, tokenSecret, profile, done) {
+                process.nextTick(function() {
+                    return done(null, profile);
+                });
+            }
+        ));
+        break;
+    case 'microsoft':
+        app.use('/auth/microsoft', routes.auth.microsoft);
+        var WindowsLiveStrategy = require('passport-windowslive').Strategy;
+        var microsoftConfig = require('./config/auth/microsoft.json');
+        passport.use(new WindowsLiveStrategy({
+                clientID: microsoftConfig.clientID,
+                clientSecret: microsoftConfig.clientSecret,
+                callbackURL: "http://" + appConfig.url + "/auth/microsoft/callback"
+            },
+            function(token, tokenSecret, profile, done) {
+                process.nextTick(function() {
+                    return done(null, profile);
+                });
+            }
+        ));
+        break;
+    default:
+        console.log('\x1b[31mERROR: An invalid authentication scheme has been specified in app.json!\x1b[0m');
+        process.exit(1);
+        break;
+}
+
 app.use('*', function(req, res) {
     res.redirect('/');
 });
@@ -91,27 +131,5 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(user, done) {
     done(null, user);
 });
-
-switch (appConfig.authProvider) {
-    case 'google':
-        var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-        var googleConfig = require('./config/auth/google.json');
-        passport.use(new GoogleStrategy({
-                clientID: googleConfig.clientID,
-                clientSecret: googleConfig.clientSecret,
-                callbackURL: "http://" + appConfig.url + "/auth/google/callback"
-            },
-            function(token, tokenSecret, profile, done) {
-                process.nextTick(function () {
-                    return done(null, profile);
-                });
-            }
-        ));
-        break;
-    default:
-        console.log('\x1b[31mERROR: An invalid authentication scheme has been specified in app.json!\x1b[0m');
-        process.exit(1);
-        break;
-}
 
 module.exports = app;
