@@ -28,7 +28,7 @@
                     <td><%- request.currentTeacher %></td>
                     <td><%- request.nextTeacher %></td>
                     <td style="width: 20px;"><%- request.priority %></td>
-                    <td><%- request.createdAt.getMonth() + '/'
+                    <td><%- (request.createdAt.getMonth() + 1) + '/'
                         + request.createdAt.getDate() + '/'
                         + request.createdAt.getFullYear().toString().substring(2) + ' '
                         + ((request.createdAt.getHours() + 24) % 12 || 12) + ':'
