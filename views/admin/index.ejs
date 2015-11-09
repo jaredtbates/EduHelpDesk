@@ -33,7 +33,7 @@
                         + request.createdAt.getFullYear().toString().substring(2) + ' '
                         + ((request.createdAt.getHours() + 24) % 12 || 12) + ':'
                         + request.createdAt.getMinutes()
-                        + (request.createdAt.getHours() >= 12) ? "PM" : "AM" %></td>
+                        + ((request.createdAt.getHours() >= 12) ? "PM" : "AM") %></td>
                     <td style="width: 30px;">
                         <div class="dropdown">
                             <button class="btn btn-default" id="optionsDropdown" data-toggle="dropdown"
