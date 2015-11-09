@@ -2,10 +2,15 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
+var googleConfig = require('../../config/auth/google.json');
+
 router.get('/', function(req, res, next) {
     req.session.next = req.query.next;
     next();
-}, passport.authenticate('google', { scope: ['profile', 'email'] }));
+}, passport.authenticate('google', {
+    scope: ['profile', 'email'],
+    hostedDomain: googleConfig.domain
+}));
 
 router.get('/callback', passport.authenticate('google'), function (req, res) {
     switch (req.session.next) {
