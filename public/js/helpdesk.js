@@ -60,7 +60,7 @@ $('#submitRequestForm').on('submit', function() {
             computerId: $('#computerId').val(),
             currentTeacher: $('#currentTeacher').val(),
             nextTeacher: $('#nextTeacher').val(),
-            priority: $('#priority').slider().val()
+            priority: $('#priority').slider().text()
         }
     });
     $('#submitRequestForm').parent().html('<p class="text-center">Your request has been submitted.</p>');
