@@ -77,3 +77,6 @@ crashlytics-build.properties
 
 # SQLite
 database.db
+
+# Visual Studio Code
+.vscode
