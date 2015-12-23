@@ -4,7 +4,7 @@ var router = express.Router();
 var appConfig = require('../config/app.json');
 
 router.get('/', function (req, res) {
-    if (!req.isAuthenticated()) {
+    if (!req.isAuthenticated() && !(appConfig.authProvider == 'none')) {
         res.redirect('/auth/' + appConfig.authProvider);
         return;
     }

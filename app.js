@@ -48,6 +48,8 @@ app.use('/api/v1', routes.api.v1);
 app.use('/admin', routes.admin);
 
 switch (appConfig.authProvider) {
+    case 'none':
+        break;
     case 'google':
         app.use('/auth/google', routes.auth.google);
         var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
