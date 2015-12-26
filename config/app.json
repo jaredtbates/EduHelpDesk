@@ -1,6 +1,6 @@
 {
   "url": "localhost",
-  "authProvider": "google",
+  "authProvider": "none",
   "sessionSecret": "RANDOMLY GENERATED STRING - CHANGE ME",
   "classPeriods": 7,
   "admins": [
