@@ -32,7 +32,7 @@
                         + request.createdAt.getDate() + '/'
                         + request.createdAt.getFullYear().toString().substring(2) + ' '
                         + ((request.createdAt.getHours() + 24) % 12 || 12) + ':'
-                        + request.createdAt.getMinutes()
+                        + ('0' + request.createdAt.getMinutes()).slice(-2)
                         + ((request.createdAt.getHours() >= 12) ? "PM" : "AM") %></td>
                     <td style="width: 30px;">
                         <div class="dropdown">
