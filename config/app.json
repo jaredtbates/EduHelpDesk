@@ -1,9 +1,10 @@
 {
   "url": "localhost",
-  "authProvider": "none",
+  "authProvider": "google",
   "sessionSecret": "RANDOMLY GENERATED STRING - CHANGE ME",
   "classPeriods": 7,
   "admins": [
-    "jbates@forsythr3.k12.mo.us"
+    "jbates@forsythr3.k12.mo.us",
+    "jaredhelpdesktesting@forsythr3.k12.mo.us"
   ]
 }

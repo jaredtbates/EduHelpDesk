@@ -5,7 +5,7 @@
             <form id="submitRequestForm" method="POST">
                 <div class="form-group">
                     <label for="studentName">What is your name?</label>
-                    <input class="form-control" id="studentName" name="studentName" <% if (user) { %> value="<%- user.displayName %>" disabled <% } %> required data-maxlength="50">
+                    <input class="form-control" id="studentName" name="studentName" <% if (user) { %> value="<%- user.displayName.replace(/['"]+/g, '') %>" disabled <% } %> required data-maxlength="50">
                 </div>
                 <div class="form-group">
                     <label for="problem">What is your problem?</label>
