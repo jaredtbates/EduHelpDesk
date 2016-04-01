@@ -7,7 +7,7 @@ $(document).ready(function() {
         tooltip_position: 'bottom'
     });
 
-    $('.table').dataTable({
+    $('#request-table').dataTable({
         "columnDefs": [
             {
                 "targets": 0,
