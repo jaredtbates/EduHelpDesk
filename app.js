@@ -6,8 +6,10 @@ var bodyParser = require('body-parser');
 var limit = require('express-better-ratelimit');
 var session = require('express-session');
 var passport = require('passport');
+var raven = require('raven');
 
 var appConfig = require('./config/app.json');
+var sentryConfig = require('./config/sentry.json');
 
 var routes = {
     index: require('./routes/index'),
@@ -30,6 +32,7 @@ app.set('json spaces', 2);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(raven.middleware.express.requestHandler(sentryConfig.SENTRY_DSN));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
@@ -93,6 +96,9 @@ app.use('*', function(req, res) {
 });
 
 // error handlers
+
+// raven
+app.use(raven.middleware.express.errorHandler(sentryConfig.SENTRY_DSN));
 
 // development error handler
 // will print stacktrace
