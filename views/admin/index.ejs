@@ -36,12 +36,11 @@
                             + ((request.createdAt.getHours() >= 12) ? "PM" : "AM") %></td>
                         <td style="width: 30px;">
                             <div class="dropdown">
-                                <button class="btn btn-default" id="optionsDropdown" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="true"><span
-                                            class="glyphicon glyphicon-cog"
-                                            aria-hidden="true"></span>
-                                    Options <span class="caret"></span></button>
-                                <ul class="dropdown-menu" aria-labelledby="optionsDropdown">
+                                <button class="btn btn-default" id="optionsDropdown" data-toggle="dropdown">
+                                    <span class="glyphicon glyphicon-cog"></span>
+                                    Options <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
                                     <% if (!request.contacted && !request.received && !request.resolved) { %>
                                     <li><a href="#" class="contact"><span class="glyphicon glyphicon-phone-alt"
                                                                           aria-hidden="true"></span> Mark as
