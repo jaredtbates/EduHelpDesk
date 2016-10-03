@@ -1,7 +1,7 @@
 {
-  "name": "EduHelpDesk",
+  "name": "eduhelpdesk",
   "version": "0.4.0",
-  "license": "MIT",
+  "license": "GPL",
   "author": {
     "name": "Jared Bates",
     "email": "me@jaredbates.net",
