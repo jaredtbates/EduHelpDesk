@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Help Desk</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-slider.css">
+    <link rel="stylesheet" href="/css/helpdesk.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row col-xs-offset-4 col-xs-4">
+            <div class="well well-sm">
+                <form id="submitRequestForm" method="POST">
+                    <div class="form-group">
+                        <label for="studentName">What is your name?</label>
+                        <input class="form-control" id="studentName" name="studentName" <% if (user) { %> value="<%- user.displayName.replace(/['"]+/g, '') %>" disabled <% } %> required data-maxlength="50">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="problem">What is your problem?</label>
+                        <textarea class="form-control" id="problem" rows="5" name="problem" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="classPeriod">What class period is it now?</label>
+                        <select class="form-control" id="classPeriod" name="classPeriod" required>
+                            <% for (var i = 1; i <= periods; i++) { %>
+                                <option value="<%- i %>"><%- i %></option>
+                            <% } %>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="computerId">What is your computer ID?</label>
+                        <input class="form-control" id="computerId" name="computerId" type="number" min="1" step="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="currentTeacher">What is your teacher for this period?</label>
+                        <input class="form-control" id="currentTeacher" name="currentTeacher" required data-maxlength="50">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nextTeacher">Who is your teacher for next period?</label>
+                        <input class="form-control" id="nextTeacher" name="nextTeacher" required data-maxlength="50">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="priority">How important is this?</label> (1 is lowest, 10 is highest)
+                        <div class="text-center">
+                            <input class="form-control" id="priority" name="priority" type="text" required>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-success" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/jquery-2.2.3.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap-slider.js"></script>
+    <script src="/js/helpdesk-client.js"></script>
+</body>
+</html>

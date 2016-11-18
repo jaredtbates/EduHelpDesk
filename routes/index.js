@@ -9,8 +9,7 @@ router.get('/', function (req, res) {
         return;
     }
 
-    res.render('index', {
-        title: 'Help Desk',
+    res.render('client', {
         periods: appConfig.classPeriods || 7,
         user: req.user
     });

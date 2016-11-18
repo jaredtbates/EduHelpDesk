@@ -16,8 +16,7 @@ router.get('/', function (req, res) {
     }
 
     db.Request.findAll().then(function(requests) {
-        res.render('admin/index', {
-            title: 'Help Desk | Admin',
+        res.render('admin', {
             requests: requests
         });
     });
