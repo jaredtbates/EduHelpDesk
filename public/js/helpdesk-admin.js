@@ -1,42 +1,18 @@
 $(function() {
     $('#request-table').dataTable({
-        "columnDefs": [
-            {
-                "targets": 0,
-                "searchable": false
-            },
-            {
-                "targets": 2,
-                "searchable": false
-            },
-            {
-                "targets": 3,
-                "searchable": false
-            },
-            {
-                "targets": 5,
-                "searchable": false
-            },
-            {
-                "targets": 6,
-                "searchable": false
-            },
-            {
-                "targets": 7,
-                "searchable": false
-            },
-            {
-                "targets": 8,
-                "searchable": false
-            },
-            {
-                "targets": 9,
-                "searchable": false,
-                "orderable": false
-            }
+        columnDefs: [
+            { "targets": 0, "searchable": false },
+            { "targets": 2, "searchable": false },
+            { "targets": 3, "searchable": false },
+            { "targets": 5, "searchable": false },
+            { "targets": 6, "searchable": false },
+            { "targets": 7, "searchable": false },
+            { "targets": 8, "searchable": false },
+            { "targets": 9, "searchable": false, "orderable": false }
         ],
-        "order": [[0, "desc"]],
-        "pageLength": 100
+        order: [[0, "desc"]],
+        pageLength: 100,
+        fixedHeader: true
     });
 });
 
