@@ -4,7 +4,7 @@ var db = require('../lib/db');
 
 var appConfig = require('../config/app.json');
 
-router.get('/', function (req, res) {
+router.get('/', (req, res) => {
     if (!req.isAuthenticated() && appConfig.authProvider != 'none') {
         res.redirect('/auth/' + appConfig.authProvider + '?next=admin');
         return;
@@ -15,11 +15,7 @@ router.get('/', function (req, res) {
         return;
     }
 
-    db.Request.findAll().then(function(requests) {
-        res.render('admin', {
-            requests: requests
-        });
-    });
+    res.render('admin');
 });
 
 module.exports = router;

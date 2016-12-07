@@ -24,7 +24,7 @@ $('#submitRequestForm').on('submit', function() {
         }
     });
     $('#submitRequestForm').parent().html('<p class="text-center">Your request has been submitted.</p>');
-}).keypress(function(event) {
+}).keypress(event => {
     if (event.which == 13) {
         event.preventDefault();
     }

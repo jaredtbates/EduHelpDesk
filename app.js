@@ -12,7 +12,7 @@ var appConfig = require('./config/app.json');
 var sentryConfig = require('./config/sentry.json');
 
 var routes = {
-    index: require('./routes/index'),
+    client: require('./routes/client'),
     admin: require('./routes/admin'),
     api: {
         v1: require('./routes/api/v1')
@@ -46,7 +46,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // routes
-app.use('/', routes.index);
+app.use('/', routes.client);
 app.use('/api/v1', routes.api.v1);
 app.use('/admin', routes.admin);
 
@@ -62,8 +62,8 @@ switch (appConfig.authProvider) {
                 clientSecret: googleConfig.clientSecret,
                 callbackURL: "http://" + appConfig.url + "/auth/google/callback"
             },
-            function(token, tokenSecret, profile, done) {
-                process.nextTick(function() {
+            (token, tokenSecret, profile, done) => {
+                process.nextTick(() => {
                     return done(null, profile);
                 });
             }
@@ -78,8 +78,8 @@ switch (appConfig.authProvider) {
                 clientSecret: microsoftConfig.clientSecret,
                 callbackURL: "http://" + appConfig.url + "/auth/microsoft/callback"
             },
-            function(token, tokenSecret, profile, done) {
-                process.nextTick(function() {
+            (token, tokenSecret, profile, done) => {
+                process.nextTick(() => {
                     return done(null, profile);
                 });
             }
@@ -91,7 +91,7 @@ switch (appConfig.authProvider) {
         break;
 }
 
-app.use('*', function(req, res) {
+app.use('*', (req, res) => {
     res.redirect('/');
 });
 
@@ -105,7 +105,7 @@ app.use(raven.middleware.express.errorHandler(sentryConfig.SENTRY_DSN));
 if (app.get('env') === 'development') {
     app.use(logger('dev'));
 
-    app.use(function (err, req, res) {
+    app.use((err, req, res) => {
         res.status(err.status || 500);
         res.render('error', {
             message: err.message,
@@ -116,7 +116,7 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function (err, req, res) {
+app.use((err, req, res) => {
     res.status(err.status || 500);
     res.render('error', {
         message: err.message,
@@ -132,11 +132,11 @@ app.use(limit({
 }));
 
 // auth
-passport.serializeUser(function(user, done) {
+passport.serializeUser((user, done) => {
     done(null, user);
 });
 
-passport.deserializeUser(function(user, done) {
+passport.deserializeUser((user, done) => {
     done(null, user);
 });
 
