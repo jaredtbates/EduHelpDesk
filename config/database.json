@@ -1,8 +1,15 @@
 {
-  "type": "sqlite",
-  "host": "127.0.0.1",
-  "database": "eduhelpdesk",
-  "username": "root",
-  "password": "password",
-  "port": 3306
+  "development": {
+    "database": "eduhelpdesk",
+    "host": "database.db",
+    "dialect": "sqlite"
+  },
+  "production": {
+    "username": "root",
+    "password": "password",
+    "database": "eduhelpdesk",
+    "host": "127.0.0.1",
+    "port": "3306",
+    "dialect": "mysql"
+  }
 }

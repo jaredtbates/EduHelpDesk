@@ -52,6 +52,7 @@
                         </div>
                     </div>
 
+                    <input type="hidden" id="studentEmail" name="studentEmail" type="text" <% if (user) { %> value="<%- user.emails[0].value %>" <% } %> required>
                     <button class="btn btn-success" type="submit">Submit</button>
                 </form>
             </div>
