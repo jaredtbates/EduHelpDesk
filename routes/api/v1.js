@@ -1,12 +1,23 @@
 var express = require('express');
 var router = express.Router();
 var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
+var sanitizeHtml = require('sanitize-html');
 
 var db = require('../../lib/db');
 var appConfig = require('../../config/app.json');
 var emailConfig = require('../../config/email.json');
 
-var transport = nodemailer.createTransport('smtps://' + emailConfig.email + ':' + emailConfig.password + '@' + emailConfig.smtpAddress);
+var transport = nodemailer.createTransport(smtpTransport({
+    host: emailConfig.host,
+    port: emailConfig.port,
+    secureConnection: emailConfig.secure,
+    requiresAuth: true,
+    auth: {
+        user: emailConfig.email,
+        pass: emailConfig.password
+    }
+}));
 
 router.get('/request', (req, res) => {
     if (!req.isAuthenticated() && appConfig.authProvider != 'none') {
@@ -23,26 +34,30 @@ router.get('/request', (req, res) => {
 
 router.post('/request', (req, res) => {
     db.Request.build({
-        studentName: req.body.studentName,
-        studentEmail: req.body.studentEmail,
-        problem: req.body.problem,
-        classPeriod: req.body.classPeriod,
-        computerId: req.body.computerId,
-        currentTeacher: req.body.currentTeacher,
-        nextTeacher: req.body.nextTeacher,
-        priority: parseInt(req.body.priority)
-    }).save();
+        studentName: sanitize(req.body.studentName),
+        studentEmail: sanitize(req.body.studentEmail),
+        problem: sanitize(req.body.problem),
+        classPeriod: sanitize(req.body.classPeriod),
+        computerId: sanitize(req.body.computerId),
+        currentTeacher: sanitize(req.body.currentTeacher),
+        nextTeacher: sanitize(req.body.nextTeacher),
+        priority: parseInt(sanitize(req.body.priority))
+    }).save().then(request => {
+        sendEmail(request.studentEmail, 'We have received your request (#' + request.id + ')',
+            'Hey ' + request.studentName.split(' ')[0] + '!<br><br>' +
+            'We have received your request and will get to it as soon as possible. Please be patient and do not submit another request until you have been contacted by a help desk cadet.<br><br>' +
+            'Thank you!<br>' +
+            'The Help Desk<br><br><hr><br>' +
+            'For reference purposes, your request has been included below:<br>' + request.problem);
 
-    sendEmail(req.body.studentEmail, 'We have received your request (#' + request.id + ')',
-        'Hey ' + req.body.studentName.split(' ')[0] + '!<br><br>' +
-        'We have received your request and will get to it as soon as possible. Please be patient and do not submit another request until you have been contacted by a help desk cadet.<br><br>' +
-        'Thank you!<br>' +
-        'The Help Desk<br><br><hr><br>' +
-        'For reference purposes, your request has been included below:<br>' + req.body.problem);
-
-    res.json({
-        statusCode: 201,
-        body: 'Request submitted'
+        res.json({
+            statusCode: 201,
+            body: 'Request submitted'
+        });
+    }).catch(error => {
+        res.json({
+            statusCode: 500
+        });
     });
 });
 
@@ -59,7 +74,7 @@ router.put('/request/:id', (req, res) => {
             } else if (req.body.resolved) {
                 sendEmail(request.studentEmail, 'Your request is resolved (#' + request.id + ')',
                     'Hey ' + request.studentName.split(' ')[0] + '!<br><br>' +
-                    'We have resolved your request.<br><br>' +
+                    'We have resolved your request. If your computer was taken to be worked on, a cadet will return it to you shortly.<br><br>' +
                     'Thank you!<br>' +
                     'The Help Desk<br><br><hr><br>' +
                     'For reference purposes, your request has been included below:<br>' + request.problem);
@@ -67,10 +82,14 @@ router.put('/request/:id', (req, res) => {
         }
 
         request.update(req.body);
-    });
 
-    res.json({
-        statusCode: 204
+        res.json({
+            statusCode: 204
+        });
+    }).error(error => {
+        res.json({
+            statusCode: 500
+        });
     });
 });
 
@@ -101,6 +120,13 @@ function sendEmail(to, subject, html) {
         to: to,
         subject: subject,
         html: html
+    });
+}
+
+function sanitize(text) {
+    return sanitizeHtml(text, {
+        allowedTags: [],
+        allowedAttributes: []
     });
 }
 

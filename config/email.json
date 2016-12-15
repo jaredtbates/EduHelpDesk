@@ -1,6 +1,8 @@
 {
-    "enabled": true,
-    "smtpAddress": "smtp.gmail.com",
-    "email": "jaredhelpdeskformtest@forsythr3.k12.mo.us",
-    "password": "testing1234"
+    "enabled": false,
+    "host": "smtp.gmail.com",
+    "port": "587",
+    "secure": false,
+    "email": "helpdesk@forsythr3.k12.mo.us",
+    "password": "helpdesk"
 }

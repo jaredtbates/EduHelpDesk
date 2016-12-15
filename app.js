@@ -32,7 +32,7 @@ app.set('json spaces', 2);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(raven.middleware.express.requestHandler(sentryConfig.SENTRY_DSN));
+app.use(raven.requestHandler(sentryConfig.SENTRY_DSN));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
@@ -98,7 +98,7 @@ app.use('*', (req, res) => {
 // error handlers
 
 // raven
-app.use(raven.middleware.express.errorHandler(sentryConfig.SENTRY_DSN));
+app.use(raven.errorHandler(sentryConfig.SENTRY_DSN));
 
 // development error handler
 // will print stacktrace
